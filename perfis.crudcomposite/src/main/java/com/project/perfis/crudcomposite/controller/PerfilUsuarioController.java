@@ -19,7 +19,11 @@ public class PerfilUsuarioController {
 	@PostMapping("/save")
 	public ResponseEntity<Object> save(@RequestBody PerfilUsuarioRequestDTO novoAluno)
 	{
-		service.save(novoAluno);
-		return ResponseEntity.status(HttpStatus.OK).body("Qualquer coisa");
+		try {
+			service.save(novoAluno);
+			return ResponseEntity.status(HttpStatus.OK).body("Salvo com sucesso!!");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao salvar perfil");
+		}
 	}
 }
